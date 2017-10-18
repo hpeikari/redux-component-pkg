@@ -9,10 +9,15 @@ class DemoComponent extends Component {
     super(props)
   }
 
+
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   render() {
     const { data, x, y } = this.props;
 
-    const list = data.map((d, index) => {
+    const list = Array.isArray(data) && data.map((d, index) => {
       const sum = x(d) + y(d);
       return (<li key={index}>{sum}</li>);
     });
@@ -23,10 +28,12 @@ class DemoComponent extends Component {
         <ul>
           {list}
         </ul>
+        <input type="button" value="click me" onClick={() => this.props.someAction(4, {prop1: 10, prop2: 15})} />
       </div>
-    )
+    );
   }
 }
+
 
 function mapStateToProps(state, props) {
   // required props
@@ -36,4 +43,11 @@ function mapStateToProps(state, props) {
   return props.mapStateToProps(state, props);
 }
 
-export default connect(mapStateToProps, actions)(DemoComponent);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    someAction: (id, val) => dispatch(actions.demoSomeAction(id, val))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DemoComponent);

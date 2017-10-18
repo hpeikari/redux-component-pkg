@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "npm update && webpack-dev-server"
   },
   "dependencies": {
     "react": "^15.4.2",

@@ -5,7 +5,7 @@ export default function reducer(state = {}, action) {
 
   switch (action.type) {
     case SOME_ACTION:
-      return Object.assign({}, state, { [id]: value });
+      return Object.assign([], state, { [id]: value });
     default:
       return state;
   }

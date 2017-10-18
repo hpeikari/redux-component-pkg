@@ -9,7 +9,7 @@ const babelLoader = {
   exclude: /node_modules/,
   loader: 'babel-loader',
   query: {
-    presets: ['es2015', 'react']
+    presets: ['react', 'es2015']
   }
 };
 

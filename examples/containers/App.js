@@ -4,7 +4,7 @@ import { DemoComponent } from 'redux-component-pkg';
 
 class App extends Component {
   constructor(props){
-    super(props)
+    super(props);
   }
 
   demoComponentMapStateToProps(state, props) {
@@ -12,7 +12,7 @@ class App extends Component {
       data: state.demoComponentData,
       x: d => d.prop1,
       y: d => d.prop2
-    }
+    };
   }
 
   render() {
@@ -21,7 +21,7 @@ class App extends Component {
         Standalone React/Redux Package with inbuilt actions and reducer
         <DemoComponent mapStateToProps={this.demoComponentMapStateToProps}/>
       </div>
-    )
+    );
   }
 }
 
