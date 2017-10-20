@@ -1,11 +1,31 @@
-import { SOME_ACTION } from '../actions';
+import {
+  SOME_ACTION,
+  Increment
+} from '../actions';
 
-export default function reducer(state = {}, action) {
-  const { id, value } = action;
+const initialState = {
+  index: 0,
+};
+
+export default function reducer(state = initialState, action) {
 
   switch (action.type) {
+
+    case Increment:
+      return {
+        ...state,
+        index: state.index + 1
+      };
+
     case SOME_ACTION:
-      return Object.assign([], state, { [id]: value });
+      return {
+        ...state,
+        dataRedux: [
+          ...state.dataRedux || [],
+          action.obj
+        ]
+      };
+
     default:
       return state;
   }

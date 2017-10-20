@@ -1,16 +1,30 @@
 'use strict';
 
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const path = require('path');
+
+const templateContent = `
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+      <div id="pkg_root"></div>
+    </body>
+  </html>`;
+
+const htmlPlugin = new HtmlWebpackPlugin({
+  templateContent,
+  inject: 'body',
+  hash: true
+});
 
 const babelLoader = {
   test: /\.js$/,
   exclude: /node_modules/,
-  loader: 'babel-loader',
-  query: {
-    presets: ['react', 'es2015']
-  }
+  loader: 'babel-loader'
 };
 
 
@@ -21,8 +35,8 @@ const svgLoader = {
 };
 
 
-const fontLoader = {
-  test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+const fileLoader = {
+  test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/,
   exclude: /src/,
   loader: 'url-loader?limit=100000'
 };
@@ -37,15 +51,18 @@ const styleLoader = sourceMaps => ({
         loader: 'css-loader',
         options: {
           sourceMap: sourceMaps,
-          minimize: true
+          minimize: true,
+          modules: true,
+          importLoaders: 2,
+          localIdentName: '[name]__[local]__[hash:base64:5]'
         }
       }, {
         loader: 'postcss-loader',
         options: {
           sourceMap: sourceMaps,
-          config: {
-            path: path.join(__dirname, 'postcss.config.js')
-          }
+          plugins: (loader) => [
+              require('autoprefixer')
+            ]
         }
       }, {
         loader: 'sass-loader',
@@ -59,30 +76,31 @@ const styleLoader = sourceMaps => ({
 module.exports = {
   entry: './src',
   output: {
-    filename: 'dist/demoComponent.min.js',
+    filename: 'dist/packageComponent.min.js',
     libraryTarget: 'umd',
-    library: 'demoComponent'
+    library: 'packageComponent'
   },
   module: {
     loaders: [
       babelLoader,
       svgLoader,
-      fontLoader,
+      fileLoader,
       styleLoader(true)
     ]
   },
   plugins: [
+/*    htmlPlugin, */
     new ExtractTextPlugin('bundle.css'),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: false,
       compress: {
         warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
       }
     })
   ]

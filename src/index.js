@@ -1,3 +1,3 @@
-export { default as DemoComponent } from './components';
-export { default as demoAction } from './actions';
-export { default as demoReducer } from './reducers';
+export { default as PackageComponent } from './components';
+export { default as packageAction } from './actions';
+export { default as packageReducer } from './reducers';

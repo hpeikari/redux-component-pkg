@@ -1,9 +1,16 @@
-export const SOME_ACTION = 'SOME_ACTION';
+export const SOME_ACTION = 'DEMO_COMPONENT/SOME_ACTION';
+export const Increment = 'DEMO_COMPONENT/Increment';
 
-export function demoSomeAction(id, value) {
+export const demoSomeAction = (id, obj) => {
   return {
     type: SOME_ACTION,
     id,
-    value
+    obj
+  };
+}
+
+export const IncrementIndex = () => {
+  return {
+    type: Increment
   };
 }
