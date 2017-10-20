@@ -7,9 +7,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const templateContent = `
   <!DOCTYPE html>
   <html>
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
     <body>
       <div id="pkg_root"></div>
     </body>
@@ -17,8 +14,7 @@ const templateContent = `
 
 const htmlPlugin = new HtmlWebpackPlugin({
   templateContent,
-  inject: 'body',
-  hash: true
+  inject: 'body'
 });
 
 const babelLoader = {
@@ -74,7 +70,7 @@ const styleLoader = sourceMaps => ({
 
 
 module.exports = {
-  entry: './src',
+  entry: './src/index.js',
   output: {
     filename: 'dist/packageComponent.min.js',
     libraryTarget: 'umd',
@@ -89,11 +85,12 @@ module.exports = {
     ]
   },
   plugins: [
-/*    htmlPlugin, */
-    new ExtractTextPlugin('bundle.css'),
+    htmlPlugin,
+//    new ExtractTextPlugin('bundle.css'),
+    new ExtractTextPlugin('lib/styles/packageName.scss'),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: false,
+      sourceMap: true,
       compress: {
         warnings: false
       }

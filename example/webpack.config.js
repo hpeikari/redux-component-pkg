@@ -1,9 +1,8 @@
 'use-strict';
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const htmlPlugin = new HtmlWebpackPlugin({
   template: 'index.html'
@@ -22,7 +21,6 @@ const styleLoader = sourceMaps => ({
           modules: true,
           importLoaders: 2,
           localIdentName: '[name]__[local]__[hash:base64:5]'
-
         }
       }, {
         loader: 'postcss-loader',

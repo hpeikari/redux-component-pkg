@@ -31,7 +31,7 @@ And also combine reducers by data key:
 
 ```
 
-#### Package Configuration
+#### Package changes
 Inside the package's component we define the `mapStateToProps` function as follows to map the package's redux store to props:
 
 ```js
@@ -42,7 +42,7 @@ Inside the package's component we define the `mapStateToProps` function as follo
       });
 ```
 
-We can then decompose the props into variables:
+We can then decompose the props into variables and very easily use them in the code:
 
 ```js
       const {
@@ -57,11 +57,47 @@ We can then decompose the props into variables:
       } = this.props;
 ```
 
+#### SCSS and Styles
+
+You can create an scss file for each component in the package, then import the scss file into the main global scss file (PackageName.scss).
+Remember to change the PackageName.scss file to the actual package name, and also import it in each individual component. This will be a great way to indentify the css class names in the MyApp if css-modules is used. The package is configured in a way that it will be compatible with projects wether they use css-modules or not.
+
+Example:
+
+```js
+      // packageName.scss
+
+      :global{ // The "global" mode will make it compatible with all projects.
+        @import './colors.scss';
+        @import '../components/button.scss';
+        @import '../components/index.scss';
+      }
+
+```
+
+The above file should be imported in each individual component:
+
+```js
+      import styles from '../styles/packageName.scss';
+      .
+      .
+      <div
+        className={[
+          styles.someClassOne || 'someClassOne',
+          styles.someClassTwo || 'someClassTwo',
+          //...etc
+        ].join(' ')}
+      />
+```
+
+NOTE: If css-modules is enabled then ```"styles.someClass"``` will be used, otherwise ```"someClass"``` will be used.
+
 
 ## Install
+
 TODO:
 ```js
-      npm install redux-component-pkg
+      npm install --save redux-component-pkg
 ```
 
 ## Example
@@ -130,7 +166,7 @@ Simple example of usage in MyApp:
           const msg = 'Standalone React/Redux Package with inbuilt actions and reducer';
 
           return (
-            <div style={{backgroundColor: "yellow"}}>
+            <div style={{backgroundColor: "grey"}}>
 
               <PackageComponent
                 className={''}
@@ -150,7 +186,7 @@ Simple example of usage in MyApp:
       export default connect(mapStateToProps, null)(App);
 ```
 
-## Example
+## Demo
 Locally,
 
 1. Clone the repo
@@ -159,8 +195,10 @@ Locally,
 3. $ npm start
 4. visit `localhost:3000`
 
-You should see a component from the package (in gray background color) rendered inside MyApp (in yellow background color).
+You should see a component from the package (in light blue background color) rendered inside MyApp (in grey background color).
 
 ## TODO
-- css modules.
 - serving the package from a remote repo (eg. github).
+
+## Sample screen shot
+![](http://oi64.tinypic.com/imjjm9.jpg)

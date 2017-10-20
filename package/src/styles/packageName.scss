@@ -1,0 +1,5 @@
+:global{
+  @import './colors.scss';
+  @import '../components/button.scss';
+  @import '../components/index.scss'; // comes after button to get higher specificity
+}

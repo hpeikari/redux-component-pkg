@@ -10,8 +10,10 @@ class App extends Component {
   }
 
   render() {
-    const msg = 'Standalone React/Redux Package with inbuilt actions and reducer';
-    const developerName = 'Hamed P';
+    const msg_1 = 'Standalone React/Redux Package with inbuilt actions and reducer';
+    const developerName_1 = 'Hamed';
+
+    const developerName_2 = 'P****';
 
     return (
       <div className={styles.containerWrapper}>
@@ -19,11 +21,18 @@ class App extends Component {
         {this.props.description}
 
         <PackageComponent
-          className={''}
+          wrapperClassName={''}
           dataProp={this.props.appData}
-          developer={developerName}
-          message={msg}
-          />
+          developer={developerName_1}
+          message={msg_1}
+        />
+
+        <PackageComponent
+          wrapperClassName={styles.pakageWrapperClass}
+          dataProp={this.props.appData}
+          developer={developerName_2}
+          message={''}
+        />
 
         <div>
           The button is implemented as part of the standalone component and Increments a value stored in the standalone coponent's redux store.
@@ -32,6 +41,9 @@ class App extends Component {
 
         <div className={styles.indexStyles}>
           Here is the standalone component's redux data (an Incremented index value): {this.props.demoCompData.index}
+          <div>
+            This value is imported from the package's Redux store, and merged with MyApp's redux store!
+          </div>
         </div>
       </div>
     );

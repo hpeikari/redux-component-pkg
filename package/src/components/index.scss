@@ -1,0 +1,14 @@
+.packageWrapper {
+  color: $dark-blue;
+  background-color: $light-blue;
+  width: 50%;
+  margin: 5vw auto;
+  padding: 2vw;
+  border: dashed 1px $dark-blue;
+  box-shadow: 10px 10px 10px $dark-purple;
+}
+
+.btnMultiply {
+  color: $white;
+  background-color: $dark-purple;
+}

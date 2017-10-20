@@ -1,6 +1,6 @@
 const initialState = {
   myAppData: {
-    appDesc: 'This app (with yellow background) is just a demo app to import the standalone component (with gray background)!',
+    appDesc: 'This app (with grey background) is just a demo app to import the standalone component (with light blue background)!',
     myAppData: [
       { prop1: 1, prop2: 2 },
       { prop1: 2, prop2: 3 },
