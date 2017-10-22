@@ -5,11 +5,31 @@
   padding: 2vw;
 }
 
-.indexStyles {
+.pakageWrapperClass {
+  background-color: #BAD9F3;
+}
+
+.buttonStyles {
+  border: 0;
+  padding: 8px 30px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  background-color: #34522C;
+
+  &:hover {
+    color: white;
+    background-color: #5F9551;
+  }
+}
+
+.indexWrapperStyles {
   color: green;
   padding: 2vw 0;
 }
 
-.pakageWrapperClass {
-  background-color: aquamarine;
+.indexNumberStyles {
+  padding: 1vw;
+  font-weight: 700;
+  font-size: 3vw;
 }

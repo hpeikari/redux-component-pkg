@@ -10,10 +10,8 @@ class App extends Component {
   }
 
   render() {
-    const msg_1 = 'Standalone React/Redux Package with inbuilt actions and reducer';
-    const developerName_1 = 'Hamed';
-
-    const developerName_2 = 'P****';
+    const msg = 'Standalone React/Redux Package with inbuilt actions and reducer';
+    const developerName = 'Hamed P';
 
     return (
       <div className={styles.containerWrapper}>
@@ -21,28 +19,26 @@ class App extends Component {
         {this.props.description}
 
         <PackageComponent
-          wrapperClassName={''}
-          dataProp={this.props.appData}
-          developer={developerName_1}
-          message={msg_1}
-        />
-
-        <PackageComponent
           wrapperClassName={styles.pakageWrapperClass}
           dataProp={this.props.appData}
-          developer={developerName_2}
-          message={''}
+          developer={developerName}
+          message={msg}
         />
 
         <div>
           This button is implemented as part of "MyApp" demo application and increments a value stored in the package's redux store.
         </div>
         <div>
-          <input type="button" value="Increment" onClick={()=> this.props.pkgActions.incrementIdx()} />
+          <input
+            className={styles.buttonStyles}
+            type="button"
+            value="Increment"
+            onClick={()=> this.props.pkgActions.incrementIdx()}
+          />
         </div>
 
         <div>
-          This button is implemented as part of the "package" and imported and utilized in MyApp. It increments a value stored in the package's redux store.
+          This button is implemented as part of the "Package" and imported and utilized in MyApp. It increments a value stored in the package's redux store.
         </div>
         <div>
           {/* Note: we could even create a customized onClick function and pass it in as props */}
@@ -52,8 +48,8 @@ class App extends Component {
           />
         </div>
 
-        <div className={styles.indexStyles}>
-          Here is the standalone component's redux data (an Incremented index value): {this.props.demoCompData.index}
+        <div className={styles.indexWrapperStyles}>
+          Here is the standalone component's redux data (an Incremented index value): <span className={styles.indexNumberStyles}>{this.props.demoCompData.index}</span>
           <div>
             This value is imported from the package's Redux store, and merged with MyApp's redux store!
           </div>

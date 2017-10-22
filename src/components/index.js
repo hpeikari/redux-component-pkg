@@ -10,7 +10,7 @@ import ButtonComponent from './button';
 
 class PackageComponent extends Component {
   constructor(props){
-    super(props)
+    super(props);
   }
 
   clickHandlerMultiply() {

@@ -8,7 +8,7 @@
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
-    "redux-component-pkg": "file:../package"
+    "redux-component-pkg": "file:.."
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

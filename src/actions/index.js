@@ -1,5 +1,5 @@
 export const STORE_ACTION = 'DEMO_COMPONENT/store_Obj_In_Array';
-export const INCREMENT_ACTION = 'DEMO_COMPONENT/Increment';
+export const INCREMENT_INDEX_ACTION = 'DEMO_COMPONENT/Increment_Index';
 
 export const storeObjInArrayAction = (obj) => {
   return {
@@ -10,6 +10,6 @@ export const storeObjInArrayAction = (obj) => {
 
 export const incrementIndexAction = () => {
   return {
-    type: INCREMENT_ACTION
+    type: INCREMENT_INDEX_ACTION
   };
 }
