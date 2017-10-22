@@ -27,7 +27,7 @@ class PackageComponent extends Component {
   }
 
   clickHandlerIncrement() {
-    this.props.actions.IncrementIdx();
+    this.props.actions.incrementIdx();
   }
 
 
@@ -108,9 +108,9 @@ class PackageComponent extends Component {
         />
 
         The following values are displayed from redux store of the standalone component/package:
-        <ul>
-          {reduxList}
-        </ul>
+        <div>
+          {reduxList || '...'}
+        </div>
       </div>
     );
   }
@@ -133,7 +133,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   actions: { // wrapped in an "actions" key so we can easily distinguish between action props vs value props
     storeObjInArray: (valObj) => dispatch(actions.storeObjInArrayAction(valObj)),
-    IncrementIdx: () => dispatch(actions.IncrementIndex())
+    incrementIdx: () => dispatch(actions.incrementIndexAction())
   }
 });
 

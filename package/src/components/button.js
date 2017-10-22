@@ -31,6 +31,7 @@ const ButtonComponent = ({
 }
 
 ButtonComponent.propTypes = {
+  onClick: PropTypes.func,
   btnValue: PropTypes.string,
   btnClassName: PropTypes.string,
   wrapperClassName: PropTypes.string

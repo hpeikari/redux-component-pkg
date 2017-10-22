@@ -1,6 +1,6 @@
 import {
-  SOME_ACTION,
-  Increment
+  STORE_ACTION,
+  INCREMENT_ACTION
 } from '../actions';
 
 const initialState = {
@@ -11,13 +11,13 @@ export default function reducer(state = initialState, action) {
 
   switch (action.type) {
 
-    case Increment:
+    case INCREMENT_ACTION:
       return {
         ...state,
         index: state.index + 1
       };
 
-    case SOME_ACTION:
+    case STORE_ACTION:
       return {
         ...state,
         dataRedux: [

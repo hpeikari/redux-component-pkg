@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { PackageComponent } from 'redux-component-pkg';
+import { PackageComponent, ButtonComponent, incrementIndexAction } from 'redux-component-pkg';
 
 import styles from './app.scss';
 
@@ -35,8 +35,21 @@ class App extends Component {
         />
 
         <div>
-          The button is implemented as part of the standalone component and Increments a value stored in the standalone coponent's redux store.
-          The value is imported from the standalone component's redux into the main application.
+          This button is implemented as part of "MyApp" demo application and increments a value stored in the package's redux store.
+        </div>
+        <div>
+          <input type="button" value="Increment" onClick={()=> this.props.pkgActions.incrementIdx()} />
+        </div>
+
+        <div>
+          This button is implemented as part of the "package" and imported and utilized in MyApp. It increments a value stored in the package's redux store.
+        </div>
+        <div>
+          {/* Note: we could even create a customized onClick function and pass it in as props */}
+          <ButtonComponent
+            btnValue="Increment"
+            onClick={()=> this.props.pkgActions.incrementIdx()}
+          />
         </div>
 
         <div className={styles.indexStyles}>
@@ -50,10 +63,22 @@ class App extends Component {
   }
 }
 
+
 const mapStateToProps = (state) => ({
   description: state.myAppData.appDesc,
   appData: state.myAppData.myAppData,
   demoCompData: state.packageData
 });
 
-export default connect(mapStateToProps, null)(App);
+
+const mapDispatchToProps = (dispatch) => ({
+  // wrapped in an "actions" key so we can easily distinguish between "MyApp" action props vs "package" action props
+  actions: {
+    // someMyAppAction: () => dispatch(actions.someMyAppAction()),
+  },
+  pkgActions: {
+    incrementIdx: () => dispatch(incrementIndexAction())
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
